@@ -19,12 +19,19 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-es2015',
+              '@babel/preset-stage-3',
+              '@babel/preset-stage-0',
+            ],
             plugins: [
-              'transform-react-jsx',
-              'transform-class-properties',
               require('@babel/plugin-transform-runtime'),
               require('@babel/plugin-proposal-object-rest-spread'),
+              require('@babel/plugin-transform-react-jsx'),
+              require('@babel/plugin-proposal-class-properties'),
+              require('@babel/plugin-syntax-class-properties'),
             ],
           },
         },

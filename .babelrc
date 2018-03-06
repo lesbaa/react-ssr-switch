@@ -1,20 +1,15 @@
 {
   "presets": [
-    "react",
-    "es2015",
-    "stage-3",
-    "stage-0"
+    "@babel/preset-react",
+    "@babel/preset-es2015",
+    "@babel/preset-stage-3",
+    "@babel/preset-stage-0"
   ],
   "plugins": [
-    "transform-runtime"
-  ],
-  "env": {
-    "test": {
-      "plugins": [
-        "transform-es2015-modules-commonjs",
-        "transform-class-properties",
-        "transform-runtime"
-      ]
-    }
-  }
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-transform-react-jsx",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-class-properties"
+  ]
 }

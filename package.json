@@ -1,7 +1,7 @@
 {
-  "name": "ssr-switch",
-  "version": "1.0.0",
-  "description": "",
+  "name": "react-ssr-switch",
+  "version": "0.0.1",
+  "description": "A simple react component for selective rendering of react components on either the server or client side",
   "main": "lib/index.js",
   "scripts": {
     "jest": "jest",

@@ -44,3 +44,8 @@ A react component for selective rendering of content on either the client or the
   )
 
 ```
+
+### Changes? Suggestions? Issues?
+
+Fork the repo and make a PR!
+![Shia says just do it](https://media.giphy.com/media/JitlRPHGAnm0w/giphy.gif)

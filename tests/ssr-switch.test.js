@@ -1,4 +1,5 @@
 import React from 'react'
+import Adapter from 'enzyme-adapter-react-15'
 import {
   mount,
   render,
@@ -8,29 +9,61 @@ import SSRSwitch, {
   ServerOnly,
 } from '../src'
 
+Enzyme.configure({ adapter: new Adapter() })
+
+const ServerDiv = (props) => (
+  <div className="render-on-server">
+    Server Render
+  </div>
+)
+
+const ClientDiv = (props) => (
+  <div className="render-on-client">
+    Client Render
+  </div>
+)
+
 const ClientOnlyWithChildren = () => (
   <ClientOnly>
-    <span className="client-only-child"></span>
+    <ClientDiv />
   </ClientOnly>
 )
 
 const ServerOnlyWithChildren = () => (
   <ServerOnly>
-    <span className="server-only-child"></span>
+    <ServerDiv />
   </ServerOnly>
 )
 
-describe('ClientOnly', () => {
-  it('renders the root component', () => {
-    const expected = mount(<ClientOnlyWithChildren />)
-      .find('.SSRSWitch')
-      .exist()
+const SSRSwitchWithClientEnv = () => (
+  <SSRSwitch
+    env="client"
+    alternateRender={<ServerDiv />}
+  >
+    <ClientDiv />
+  </SSRSwitch>
+)
 
+const SSRSwitchWithServerEnv = () => (
+  <SSRSwitch
+    env="server"
+    alternateRender={<ClientDiv />}
+  >
+    <ServerDiv />
+  </SSRSwitch>
+)
+
+describe('ClientOnly', () => {
+  const wrapper = mount(<ClientOnlyWithChildren />)
+  it('renders the root component', () => {
+    const expected = wrapper
+      .find('.SSRSwitch')
+      .exists()
     expect(expected).toBe(true)
   })
 
   it('renders children on the client', () => {
-    // mount
+    
   })
 
   it('does not render children on the server', () => {

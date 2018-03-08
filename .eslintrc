@@ -4,9 +4,11 @@
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
+        "jsx": true,
         "experimentalObjectRestSpread": true
     }
   },
+  "extends": "airbnb",
     // full list of airbnb rules here => https://gist.github.com/eddywashere/3ad627a827ece50e349a
   "rules": {
     // semi colons are now illegal
@@ -16,7 +18,7 @@
     // should return at the end of callbacks 
     // "eslint callback-return": "error"
     // error on inconsistent spacing
-    "indent": ["error", 2],
+    "indent": ["error", 2, {"SwitchCase": 1}],
     // enforce comma dangling
     "comma-dangle": ["error", {
       "arrays": "always-multiline",
@@ -33,6 +35,10 @@
     "no-undefined": "error",
     // disallow declaration of variables that are not usedm except global variables / imports
     "no-unused-vars": ["error", {"vars": "local", "args": "none"}],
+    // use double quotes in jsx
+    "jsx-quotes": ["error", "prefer-double"],
+    // allow jsx or js files for components
+    "react/jsx-filename-extension": [2, {"extensions": [".js", ".jsx"]}],
     // don't mutate arguments
     "no-param-reassign": ["error", { "props": true }],
     "global-require": 0,
@@ -42,6 +48,8 @@
     // absolute paths resolve to /app so warnings are not needed
     "import/no-absolute-path": 0,
     "class-methods-use-this": 0,
+    "react/forbid-prop-types": 0,
+    "react/require-default-props": 1,
     "no-use-before-define": 0
   },
   "settings": {

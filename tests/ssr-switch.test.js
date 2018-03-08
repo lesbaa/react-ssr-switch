@@ -1,21 +1,19 @@
 import React from 'react'
-import Adapter from 'enzyme-adapter-react-15'
 import {
   mount,
   render,
 } from 'enzyme'
-import SSRSwitch, {
+
+import {
   ClientOnly,
   ServerOnly,
-} from '../src'
+} from '../src/index'
 
-Enzyme.configure({ adapter: new Adapter() })
-
-const ServerDiv = (props) => (
-  <div className="render-on-server">
-    Server Render
-  </div>
-)
+// const ServerDiv = (props) => (
+//   <div className="render-on-server">
+//     Server Render
+//   </div>
+// )
 
 const ClientDiv = (props) => (
   <div className="render-on-client">
@@ -29,35 +27,37 @@ const ClientOnlyWithChildren = () => (
   </ClientOnly>
 )
 
-const ServerOnlyWithChildren = () => (
-  <ServerOnly>
-    <ServerDiv />
-  </ServerOnly>
-)
+// const ServerOnlyWithChildren = () => (
+//   <ServerOnly>
+//     <ServerDiv />
+//   </ServerOnly>
+// )
 
-const SSRSwitchWithClientEnv = () => (
-  <SSRSwitch
-    env="client"
-    alternateRender={<ServerDiv />}
-  >
-    <ClientDiv />
-  </SSRSwitch>
-)
+// const SSRSwitchWithClientEnv = () => (
+//   <SSRSwitch
+//     env="client"
+//     alternateRender={<ServerDiv />}
+//   >
+//     <ClientDiv />
+//   </SSRSwitch>
+// )
 
-const SSRSwitchWithServerEnv = () => (
-  <SSRSwitch
-    env="server"
-    alternateRender={<ClientDiv />}
-  >
-    <ServerDiv />
-  </SSRSwitch>
-)
+// const SSRSwitchWithServerEnv = () => (
+//   <SSRSwitch
+//     env="server"
+//     alternateRender={<ClientDiv />}
+//   >
+//     <ServerDiv />
+//   </SSRSwitch>
+// )
+
+const Test = props => <div className="bo"/>
 
 describe('ClientOnly', () => {
-  const wrapper = mount(<ClientOnlyWithChildren />)
+  const wrapper = mount(<Test />)
   it('renders the root component', () => {
     const expected = wrapper
-      .find('.SSRSwitch')
+      .find('.bo')
       .exists()
     expect(expected).toBe(true)
   })

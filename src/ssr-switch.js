@@ -1,6 +1,6 @@
-import { Component } from 'react'
+import React from 'react'
 
-class SSRSwitch extends Component {
+class SSRSwitch extends React.PureComponent {
   state = {
     shouldRender: this.props.env === 'server',
   }

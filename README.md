@@ -24,7 +24,7 @@ A react component for selective rendering of content on either the client or the
       </ClientOnly>
       <div>Server only stuff:</div>
       <ServerOnly>
-        <span>This code will be rendered on the server only</span>
+        <span>This code will be rendered on the server only, and will dissapear on the initial client render</span>
       </ServerOnly>
       <div>Switchy stuff:</div>
       <SSRSwitch

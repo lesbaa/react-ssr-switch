@@ -10,22 +10,10 @@ import SSRSwitch, {
   ServerOnly,
 } from '../src/index'
 
-const ServerDiv = props => (
-  <div className="render-on-server">
-    Server Render
-  </div>
-)
-
-const ClientDiv = props => (
-  <div className="render-on-client">
-    Client Render
-  </div>
-)
-
 const ClientOnlyWithChildren = () => (
   <div className="wrapper">
     <ClientOnly>
-      <ClientDiv />
+      <div className="render-on-client" />
     </ClientOnly>
   </div>
 )
@@ -33,7 +21,7 @@ const ClientOnlyWithChildren = () => (
 const ServerOnlyWithChildren = () => (
   <div className="wrapper">
     <ServerOnly>
-      <ServerDiv />
+      <div className="render-on-server" />
     </ServerOnly>
   </div>
 )
@@ -96,96 +84,96 @@ describe('ServerOnly', () => {
   })
 })
 
-const SSRSwitchWithClientEnv = () => (
-  <div className="wrapper">
+describe('SSRSwitch with env set to client', () => {
+  const SSRSwitchOnClient = () => (
     <SSRSwitch
       env="client"
-      alternateRender={<ServerDiv />}
+      alternateRender={<div className="alternate-render" />}
     >
-      <ClientDiv />
+      <div className="child" />
     </SSRSwitch>
-  </div>
-)
+  )
 
-const SSRSwitchWithServerEnv = () => (
-  <div className="wrapper">
-    <SSRSwitch
-      env="server"
-      alternateRender={<ClientDiv />}
-    >
-      <ServerDiv />
-    </SSRSwitch>
-  </div>
-)
-
-describe('SSRSwitch with env set to client', () => {
   const clientWrapper = mount(
-    <SSRSwitchWithClientEnv />
+    <SSRSwitchOnClient />
   )
+
   const serverRender = render(
-    <SSRSwitchWithClientEnv />
+    <SSRSwitchOnClient />
   )
+
   it('renders children on the client when env is set to client', () => {
     const expectedCLient = clientWrapper
-      .find('.render-on-client')
+      .find('.child')
       .exists()
     expect(expectedCLient).toBe(true)
   })
 
   it('does not render children on the server when env is set to client', () => {
     const expectedServer = serverRender
-      .find('.render-on-client')
+      .find('.child')
       .length
     expect(expectedServer).toBe(0)
   })
 
   it('renders the alternative render on the server when env is set to client', () => {
     const expectedServer = serverRender
-      .find('.render-on-server')
+      .find('.alternate-render')
       .length
     expect(expectedServer).toBe(1)
   })
 
   it('does not render the alternative render on the client when env is set to client', () => {
     const expectedServer = clientWrapper
-      .find('.render-on-server')
+      .find('.alternate-render')
       .exists()
     expect(expectedServer).toBe(false)
   })
 })
 
 describe('SSRSwitch with env set to server', () => {
+  const SSRSwitchOnServer = () => (
+    <SSRSwitch
+      env="server"
+      alternateRender={<div className="alternate-render" />}
+    >
+      <div className="child" />
+    </SSRSwitch>
+  )
+
   const clientWrapper = mount(
-    <SSRSwitchWithServerEnv />
+    <SSRSwitchOnServer />
   )
+
   const serverRender = render(
-    <SSRSwitchWithServerEnv />
+    <SSRSwitchOnServer />
   )
-  it('renders children on the client when env is set to server', () => {
-    const expectedCLient = clientWrapper
-      .find('.render-on-client')
-      .exists()
-    expect(expectedCLient).toBe(true)
-  })
 
-  it('does not render children on the server when env is set to server', () => {
+  it('renders children on the server when env is set to server', () => {
     const expectedServer = serverRender
-      .find('.render-on-client')
-      .length
-    expect(expectedServer).toBe(0)
-  })
-
-  it('renders the alternative render on the server when env is set to server', () => {
-    const expectedServer = serverRender
-      .find('.render-on-server')
+      .find('.child')
       .length
     expect(expectedServer).toBe(1)
   })
 
-  it('does not render the alternative render on the client when env is set to server', () => {
-    const expectedServer = clientWrapper
-      .find('.render-on-server')
+  it('does not render children on the client when env is set to server', () => {
+    const expectedCLient = clientWrapper
+      .find('.child')
       .exists()
-    expect(expectedServer).toBe(false)
+    expect(expectedCLient).toBe(false)
+  })
+
+  it('does not render the alternative render on the server when env is set to server', () => {
+    const expectedServer = serverRender
+      .find('.alternate-render')
+      .length
+    expect(expectedServer).toBe(0)
+  })
+
+  it('renders the alternative render on the client when env is set to server', () => {
+    const expectedServer = clientWrapper
+      .find('.alternate-render')
+      .exists()
+    expect(expectedServer).toBe(true)
   })
 })

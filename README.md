@@ -29,14 +29,14 @@ A react component for selective rendering of content on either the client or the
       <div>Switchy stuff:</div>
       <SSRSwitch
         env="client"
-        alternateRender={() => <div>I am rendered on the server!</div>}
+        alternateRender={<div>I am rendered on the server!</div>}
       >
         <div>I am rendered on the client!</div>
       </SSRSwitch>
       <div>More switchy stuff:</div>
       <SSRSwitch
         env="server"
-        alternateRender={() => <div>I am rendered on the client!</div>}
+        alternateRender={<div>I am rendered on the client!</div>}
       >
         <div>I am rendered on the server!</div>
       </SSRSwitch>

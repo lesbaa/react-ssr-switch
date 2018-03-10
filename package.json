@@ -1,6 +1,6 @@
 {
   "name": "react-ssr-switch",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A simple react component for selective rendering of react components on either the server or client side",
   "main": "lib/index.js",
   "repository": "https://github.com/lesbaa/react-ssr-switch",

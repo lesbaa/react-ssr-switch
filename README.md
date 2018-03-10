@@ -1,11 +1,11 @@
 React SSRSwitch
 ===============
 
-A react component for selective rendering of content on either the client or the server and avoids all those annoying checksum errors, inspiration taken from [kadirahq](https://github.com/kadirahq/react-no-ssr)'s awesome component.
+A react component for selective rendering of content on either the client or the server and avoids all those annoying checksum errors, inspiration taken from [kadirahq's awesome no-ssr component](https://github.com/kadirahq/react-no-ssr).
 
 ### Install
 
-`npm install --save-exact react-ssr-switch`
+`npm install react-ssr-switch`
 
 ### Example usage
 
